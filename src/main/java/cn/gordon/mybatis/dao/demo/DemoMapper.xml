@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="cn.gordon.mybatis.dao.demo.DemoMapper">
+
+	<resultMap id="resultMap" type="demo">
+    	<id column="id" property="id" jdbcType="VARCHAR" />
+    	<result column="tname" property="tname" jdbcType="VARCHAR" />
+    	<result column="tpwd" property="tpwd" jdbcType="VARCHAR" />
+  	</resultMap>
+  	
+  	<sql id="Demo_Column_List" >
+    	id, tname, tpwd
+  	</sql>
+  	
+  	<!-- 方法区 -->
+  	<select id="getAll" resultMap="resultMap">
+  		SELECT * FROM demotbl
+  	</select>
+  	
+ 	<select id="get" resultMap="resultMap" parameterType="java.lang.String" >
+    	select <include refid="Demo_Column_List" /> from demotbl where id = #{id,jdbcType=VARCHAR}
+  	</select>
+  	  	
+	<delete id="delete" parameterType="java.lang.String" >
+    	delete from demotbl where id = #{id,jdbcType=VARCHAR}
+  	</delete>
+  	
+  	<insert id="insert" parameterType="demo" >
+    	insert into demotbl (id, tname, tpwd) 
+    	values (#{id,jdbcType=VARCHAR}, #{tname,jdbcType=VARCHAR}, #{tpwd,jdbcType=VARCHAR})
+  	</insert>
+  	
+  	<insert id="insertSelective" parameterType="demo" >
+    	insert into demotbl 
+    	<trim prefix="(" suffix=")" suffixOverrides="," >
+	      	<if test="id != null" >
+	        	id,
+	      	</if>
+	      	<if test="tname != null" >
+	        	tname,
+	      	</if>
+	      	<if test="tpwd != null" >
+	        	tpwd,
+	      	</if>
+    	</trim>
+    	<trim prefix="values (" suffix=")" suffixOverrides="," >
+      		<if test="id != null" >
+        		#{id,jdbcType=VARCHAR},
+      		</if>
+      		<if test="tname != null" >
+        		#{tname,jdbcType=VARCHAR},
+      		</if>
+      		<if test="tpwd != null" >
+        		#{tpwd,jdbcType=VARCHAR},
+      		</if>
+    	</trim>
+  	</insert>
+  	
+  	<update id="updateSelective" parameterType="demo" >
+    	update demotbl
+    	<set >
+      		<if test="tname != null" >
+        		tname = #{tname,jdbcType=VARCHAR},
+      		</if>
+      		<if test="tpwd != null" >
+        		tpwd = #{tpwd,jdbcType=VARCHAR},
+      		</if>
+    	</set>
+    	where id = #{id,jdbcType=VARCHAR}
+  	</update>
+  	
+  	<update id="update" parameterType="demo" >
+    	update demotbl set tname = #{tname,jdbcType=VARCHAR}, tpwd = #{tpwd,jdbcType=VARCHAR} where id = #{id,jdbcType=VARCHAR}
+  	</update>
+  	
+</mapper>

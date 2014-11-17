@@ -2,7 +2,7 @@ package cn.gordon.mybatis.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import cn.gordon.mybatis.dao.DemoMapper;
+import cn.gordon.mybatis.dao.demo.DemoMapper;
 import cn.gordon.mybatis.model.DemoEbo;
 import cn.gordon.mybatis.service.DemoService;
 
