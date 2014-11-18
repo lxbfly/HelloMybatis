@@ -16,6 +16,20 @@ Date: 2014-11-12 12:02:21
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
+-- Table structure for user_tbl
+-- ----------------------------
+CREATE TABLE `user_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) DEFAULT NULL COMMENT '用户名称',
+  `password` varchar(200) DEFAULT NULL COMMENT '用户密码',
+  `email` varchar(100) DEFAULT NULL COMMENT '电子邮箱',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
 -- Table structure for customer
 -- ----------------------------
 DROP TABLE IF EXISTS `customer`;

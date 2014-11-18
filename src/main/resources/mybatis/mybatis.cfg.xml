@@ -6,11 +6,13 @@
 	<typeAliases>
 		<typeAlias type="cn.gordon.mybatis.model.DemoEbo" alias="demo" />
 		<typeAlias type="cn.gordon.mybatis.model.StudentEbo" alias="student" />
+		<typeAlias type="cn.gordon.mybatis.model.UserEbo" alias="User" />
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="cn/gordon/mybatis/dao/demo/DemoMapper.xml" />
 		<mapper resource="cn/gordon/mybatis/dao/student/StudentMapper.xml" />
+		<mapper resource="cn/gordon/mybatis/dao/user/UserMapper.xml" />
 	</mappers>
 	
 </configuration>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.gordon.mybatis.dao.user.UserMapper">
+
+	<resultMap id="resultMap" type="User">
+		<id property="id" column="id" jdbcType="INTEGER"/>
+		<result property="username" column="username" jdbcType="VARCHAR"/>
+		<result property="password" column="password" jdbcType="VARCHAR"/>
+		<result property="email" column="email" jdbcType="VARCHAR"/>
+		<result property="createTime" column="create_time" jdbcType="DATE"/>
+		<result property="updateTime" column="update_time" jdbcType="DATE"/>
+	</resultMap>
+  	
+  	<sql id="All_Column_Name" >
+    	id, username, password, email, create_time, update_time
+  	</sql>
+  	
+  	<!-- 方法区 -->
+  	<select id="getAll" resultMap="resultMap">
+  		<![CDATA[
+  			SELECT <include refid="All_Column_Name" /> FROM user_tbl
+  		]]>
+  	</select>
+	
+	<select id="getUserByName" parameterType="string" resultMap="resultMap">
+		<![CDATA[
+	        SELECT <include refid="All_Column_Name" /> FROM user_tbl WHERE username = #{name}
+	    ]]>
+	</select>
+	
+	<insert id="insert" parameterType="User">
+		<![CDATA[
+			INSERT INTO student (username, password, email, create_time, update_time) 
+			VALUES (#{username}, #{password}, #{email}, #{createTime}, #{updateTime})
+		]]>
+	</insert>
+	
+</mapper>
